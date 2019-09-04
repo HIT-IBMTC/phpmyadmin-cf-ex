@@ -1,11 +1,8 @@
 ---
 applications:
-- name: cf-ex-phpmyadmin
+- name: phpmyadmin-cf
   memory: 128M
   instances: 1
   path: .
-  buildpack: php_buildpack
-  services:
-  - mysql
-  routes:
-  - route: phpmyadmin.cfapps.io
+  buildpacks: 
+  - php_buildpack

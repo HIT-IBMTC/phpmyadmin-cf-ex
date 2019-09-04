@@ -12,9 +12,9 @@ _log = logging.getLogger('phpmyadmin')
 
 
 DEFAULTS = utils.FormattedDict({
-    'PHPMYADMIN_VERSION': '4.8.3',
-    'PHPMYADMIN_PACKAGE': 'phpMyAdmin-{PHPMYADMIN_VERSION}-english.tar.gz',
-    'PHPMYADMIN_HASH': 'b0a9d1ae077f48efb90102c6da9d0ce6eb8f1b6f',
+    'PHPMYADMIN_VERSION': '4.9.0.1',
+    'PHPMYADMIN_PACKAGE': 'phpMyAdmin-{PHPMYADMIN_VERSION}-all-languages.tar.gz',
+    'PHPMYADMIN_HASH': '0fad0c50800382e6607fdd33265fbf8a72eb492627d9a28c6907dbb9c7eab39a',
     'PHPMYADMIN_URL': 'https://files.phpmyadmin.net/phpMyAdmin/'
                       '{PHPMYADMIN_VERSION}/{PHPMYADMIN_PACKAGE}'
 })
@@ -38,8 +38,9 @@ def compile(install):
     ctx = install.builder._ctx
     inst = install._installer
     workDir = os.path.join(ctx['TMPDIR'], 'phpmyadmin')
+    offlinePackFileUrl='file:///%s' % os.path.join(ctx['BUILD_DIR'], 'offline-pack', DEFAULTS['PHPMYADMIN_PACKAGE'])
     inst.install_binary_direct(
-        DEFAULTS['PHPMYADMIN_URL'],
+        offlinePackFileUrl,
         DEFAULTS['PHPMYADMIN_HASH'],
         workDir,
         fileName=DEFAULTS['PHPMYADMIN_PACKAGE'],

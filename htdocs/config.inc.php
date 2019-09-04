@@ -28,7 +28,7 @@ $service_blob = json_decode($_ENV['VCAP_SERVICES'], true);
 $mysql_services = array();
 foreach($service_blob as $service_provider => $service_list) {
     // looks for 'cleardb' or 'p-mysql' service
-    if ($service_provider === 'cleardb' || $service_provider === 'p-mysql') {
+    if ($service_provider === 'cleardb' || $service_provider === 'p-mysql' || $service_provider === 'p.mysql') {
         foreach($service_list as $mysql_service) {
             $mysql_services[] = $mysql_service;
         }
@@ -190,4 +190,11 @@ $cfg['SaveDir'] = $_ENV['TMPDIR'];
  * You can find more configuration options in the documentation
  * in the doc/ folder or at <http://docs.phpmyadmin.net/>.
  */
+
+/*
+ * Added By Ultragtx
+ */
+$cfg['AllowArbitraryServer'] = true;
+//$cfg['LoginCookieValidity'] = 864000000;
+$cfg['ExecTimeLimit'] = 0;
 ?>
